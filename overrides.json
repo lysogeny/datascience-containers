@@ -1,0 +1,12 @@
+{
+    "@jupyterlab/lsp-extension:plugin": {
+        "activate": "on"
+    },
+    "@jupyterlab/apputils-extension:themes": {
+        "theme": "JupyterLab Light"
+    },
+    "@jupyterlab/extensionmanager-extension:plugin": {
+        "disclaimed": true,
+        "enabled": true
+    }
+}

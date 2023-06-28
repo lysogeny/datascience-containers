@@ -5,7 +5,7 @@ RUN mamba install --yes -c conda-forge jupyterlab_vim jupyterlab_execute_time
 RUN mamba install --yes -c conda-forge 'jupyterlab-lsp' 'python-lsp-server[all]' 'r-languageserver'
 RUN julia -e "using Pkg; Pkg.add(\"LanguageServer\")"
 # Setup LSP in jupyter
-ADD lsp.json /opt/conda/share/jupyter/lab/settings/overrides.json
+ADD overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
 # Cleanup
 USER root
 RUN set -eux; \
