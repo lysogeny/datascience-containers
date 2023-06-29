@@ -4,6 +4,27 @@ A container for data science things.
 
 Based on the `jupyter/datascience-notebook`.
 
+## Running
+
+```sh
+podman run --rm -v "${PWD}":/home/jovyan/work --name jupyter -p 8888:8888 {container}
+```
+
+Replace `{container}` with the relevant container.
+
+Or you can build on the container:
+
+```Dockerfile
+FROM {container}
+RUN mamba install -c conda-forge
+```
+
+Build the image and run the container
+
+```sh 
+podman build -f Containerfile -t jupyter && podman run --rm -v "${PWD}":/home/jovyan/work --name jupyter -p 8888:8888
+```
+
 ## Contents
 
 Since this builds on the `jupyter/datascience-notebook`:
