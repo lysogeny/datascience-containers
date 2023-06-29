@@ -6,9 +6,17 @@ Based on the `jupyter/datascience-notebook`.
 
 ## Running
 
+Use a `run` label
+
+```sh
+podman container runlabel -n jupyter run {container}
+```
+
+Or manually
+
 ```sh
 podman run --rm \
-    -v "${PWD}":/home/jovyan/work \
+    -v "${PWD}":/home/jovyan/work:Z \
     --name jupyter \
     -p 8888:8888 \
     --userns=keep-id:uid=1000,gid=100 \

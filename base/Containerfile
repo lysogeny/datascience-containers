@@ -29,3 +29,5 @@ RUN set -eux; \
     fix-permissions $CONDA_DIR; \
     fix-permissions /home/$NB_USER
 USER ${NB_USER}
+
+LABEL run="podman run --rm -it --log-driver=none -v \"\${PWD}\":/home/jovyan/work:Z -p 8888:8888 --userns=keep-id:uid=1000,gid=100 \$IMAGE start-notebook.sh --notebook-dir=work"
