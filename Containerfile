@@ -9,9 +9,8 @@ RUN set -eux; \
 # Override some settings
 ADD overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
 # Add some julia packages
-ADD Project.toml /opt/julia/environments/v1.8/Project.toml
-RUN julia -e "using Pkg; Pkg.resolve(); Pkg.instantiate()"
-Run julia -e "using Pkg; Pkg.precompile()"
+RUN julia -e "using Pkg; Pkg.add([\"CSV\", \"DataFrames\", \"DataFramesMeta\", \"Plots\", \"PyPlot\", \"StatsPlots\"])"
+RUN julia -e "using Pkg; Pkg.update(); Pkg.gc(); Pkg.precompile()"
 # Cleanup
 USER root
 RUN set -eux; \
