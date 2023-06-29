@@ -16,7 +16,7 @@
                 "priority": 70
             },
             "julia-language-server": {
-                "priority": 10
+                "priority": 0
             }
         }
     }
