@@ -6,6 +6,32 @@
     "@jupyterlab/apputils-extension:themes": {
         "theme": "JupyterLab Light"
     },
+    "@jupyterlab/notebook-extension:tracker": {
+        "codeCellConfig": {
+            "fontFamily": "FiraCode Nerd Font",
+            "lineNumbers": true,
+            "rulers": [
+                80,
+                120
+            ]
+        },
+        "markdownCellConfig": {
+            "fontFamily": "FiraCode Nerd Font",
+            "lineNumbers": true,
+            "rulers": [
+                80,
+                120
+            ]
+        },
+        "rawCellConfig": {
+            "fontFamily": "FiraCode Nerd Font",
+            "lineNumbers": true,
+            "rulers": [
+                80,
+                120
+            ]
+        }
+    },
     "@jupyterlab/extensionmanager-extension:plugin": {
         "disclaimed": true,
         "enabled": true
