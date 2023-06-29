@@ -1,11 +1,17 @@
 FROM docker.io/jupyter/datascience-notebook:2022-10-09
 # Install jupyterlabextensions
-RUN mamba install --yes -c conda-forge jupyterlab_vim jupyterlab_execute_time
+RUN mamba install --yes -c conda-forge jupyterlab-lsp jupyterlab_vim jupyterlab_execute_time
 # Install Language Servers
-RUN mamba install --yes -c conda-forge 'jupyterlab-lsp' 'python-lsp-server[all]' 'r-languageserver'
-RUN julia -e "using Pkg; Pkg.add(\"LanguageServer\")"
-# Setup LSP in jupyter
+RUN set -eux; \
+    mamba install --yes -c conda-forge r-languageserver; \
+    npm install --no-save pyright; \
+    julia -e "using Pkg; Pkg.add(\"LanguageServer\"); Pkg.precompile()"
+# Override some settings
 ADD overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
+# Add some julia packages
+ADD Project.toml /opt/julia/environments/v1.8/Project.toml
+RUN julia -e "using Pkg; Pkg.resolve(); Pkg.instantiate()"
+Run julia -e "using Pkg; Pkg.precompile()"
 # Cleanup
 USER root
 RUN set -eux; \
