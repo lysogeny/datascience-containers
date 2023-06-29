@@ -1,9 +1,23 @@
 {
+    "@jupyterlab/apputils-extension:notification" : {
+        "checkForUpdates": false,
+        "fetchNews": "false"
+    },
     "@jupyterlab/apputils-extension:themes": {
         "theme": "JupyterLab Light"
     },
     "@jupyterlab/extensionmanager-extension:plugin": {
         "disclaimed": true,
         "enabled": true
+    },
+    "@jupyter-lsp/jupyterlab-lsp:plugin": {
+        "language_servers": {
+            "julia-ls": {
+                "priority": 70
+            },
+            "julia-language-server": {
+                "priority": 10
+            }
+        }
     }
 }

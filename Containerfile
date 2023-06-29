@@ -6,11 +6,12 @@ RUN set -eux; \
     mamba install --yes -c conda-forge r-languageserver; \
     npm install --no-save pyright; \
     julia -e "using Pkg; Pkg.add(\"LanguageServer\"); Pkg.precompile()"
-# Override some settings
-ADD overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
 # Add some julia packages
 RUN julia -e "using Pkg; Pkg.add([\"CSV\", \"DataFrames\", \"DataFramesMeta\", \"Plots\", \"PyPlot\", \"StatsPlots\"])"
 RUN julia -e "using Pkg; Pkg.update(); Pkg.gc(); Pkg.precompile()"
+# Override some settings
+ADD overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
+ADD julials.json /opt/conda/etc/jupyter/jupyter_server_config.d/julia-ls.json
 # Cleanup
 USER root
 RUN set -eux; \

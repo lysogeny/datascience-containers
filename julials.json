@@ -1,0 +1,17 @@
+{
+    "LanguageServerManager": {
+        "language_servers": {
+            "julia-ls": {
+                "languages": ["julia"],
+                "version": 2,
+                "argv": [
+                    "julia",
+                    "--project=\"/opt/julia/environments/v1.8/\"", 
+                    "-e", 
+                    "using LanguageServer; run(LanguageServerInstance(stdin, stdout, \"/opt/julia/environments/v1.8/\"))"
+                ],
+                "mime_types": ["text/julia", "text/x-julia", "application/julia"]
+            }
+        }
+    }
+}
