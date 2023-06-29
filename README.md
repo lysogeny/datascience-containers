@@ -7,7 +7,12 @@ Based on the `jupyter/datascience-notebook`.
 ## Running
 
 ```sh
-podman run --rm -v "${PWD}":/home/jovyan/work --name jupyter -p 8888:8888 --userns=keep-id:uid=1000,gid=100 {container}
+podman run --rm \
+    -v "${PWD}":/home/jovyan/work \
+    --name jupyter \
+    -p 8888:8888 \
+    --userns=keep-id:uid=1000,gid=100 \
+    {container}
 ```
 
 Replace `{container}` with the relevant container.
@@ -22,7 +27,13 @@ RUN mamba install -c conda-forge
 Build the image and run the container
 
 ```sh 
-podman build -f Containerfile -t extended-jupyter && podman run --rm -v "${PWD}":/home/jovyan/work --name jupyter -p 8888:8888 --userns=keep-id:uid=1000,gid=100 extended-jupyter
+podman build -f base/Containerfile -t extended-jupyter 
+podman run --rm \
+    -v "${PWD}":/home/jovyan/work \
+    --name jupyter \
+    -p 8888:8888 \
+    --userns=keep-id:uid=1000,gid=100 \
+    extended-jupyter
 ```
 
 ## Contents
