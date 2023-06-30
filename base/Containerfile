@@ -3,10 +3,10 @@ FROM docker.io/jupyter/datascience-notebook:2022-10-09
 LABEL name="jupyter-ds-base" \
     maintainer="Jooa <git@jooa.xyz>" \
     description="A pre-configured R/Julia/Python Jupyter container with LSP support" \
-    version="0.1"
+    version="0.2"
 
 # Install jupyterlabextensions
-RUN mamba install --yes -c conda-forge jupyterlab-lsp jupyterlab_vim jupyterlab_execute_time
+RUN mamba install --yes -c conda-forge jupyterlab-lsp jupyterlab_vim "jupyterlab_execute_time==2.3.1" jupyterlab-unfold
 
 # Install Language Servers
 RUN set -eux; \
