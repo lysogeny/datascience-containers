@@ -9,7 +9,7 @@ Based on the `jupyter/datascience-notebook`.
 Use a `run` label
 
 ```sh
-podman container runlabel -n jupyter run {container}
+podman container runlabel -n jupyter run ghcr.io/lysogeny/jupyter-ds-base:master
 ```
 
 Or manually
@@ -20,16 +20,7 @@ podman run --rm \
     --name jupyter \
     -p 8888:8888 \
     --userns=keep-id:uid=1000,gid=100 \
-    {container}
-```
-
-Replace `{container}` with the relevant container.
-
-Or you can build on the container:
-
-```Dockerfile
-FROM {container}
-RUN mamba install -c conda-forge
+    ghcr.io/lysogeny/jupyter-ds-base:master
 ```
 
 Build the image and run the container
@@ -67,3 +58,16 @@ Additional Julia packages:
 - `DataFramesMeta.jl`
 - `Plots.jl`
 - `StatsPlots.jl`
+
+## Layering
+
+To layer this you may want to do something like this
+
+```Dockerfile
+FROM ghcr.io/lysogeny/jupyter-ds-base:master
+
+USER ${NB_USER}
+
+RUN mamba install -c conda_forge scanpy
+RUN julia -e 'using Pkg; Pkg.add("DifferentialEquations"); Pkg.precompile()'
+```
